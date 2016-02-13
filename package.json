@@ -1,0 +1,31 @@
+{
+  "name": "frontendemotion",
+  "version": "1.0.0",
+  "description": "Data Visualization for Emotion Recogniztion",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run watchify & npm run browsersync",
+    "watchify": "watchify client/index.js -v -t babelify -o client/bundle.js",
+    "browsersync": "browser-sync start --server client --files 'client/**/*.js', 'client/*.js', 'client/css/*.css'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steveleec/emotolizeFrontEnd.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "emotolize",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steveleec/emotolizeFrontEnd/issues"
+  },
+  "homepage": "https://github.com/steveleec/emotolizeFrontEnd#readme",
+  "dependencies": {
+    "react": "^0.14.7",
+    "babelify": "^6.3.0",
+    "browser-sync": "^2.9.11",
+    "react-dom": "^0.14.0-",
+    "watchify": "^3.4.0"
+  }
+}
