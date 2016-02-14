@@ -22,7 +22,7 @@
 
 .title, .subtitle {
   font-family: Avenir;
-  color: #03A9F4;
+  color: #304FFE;
 }
 
 .title {
@@ -39,5 +39,89 @@
 /*DISPLAY WRAPPER*/
 
 .displayWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
+/*TOP BAR WRAPPER*/
+.topBarWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #304FFE;
+  height: 50px;
+}
+
+.titleTopBar {
+  color: white;
+  font-size: 20px;
+  font-family: Avenir;
+  margin: 0px;
+}
+
+/*WRAPPER EMOTION BARS*/
+
+.wrapperEmotionBar {
+  margin-top: 50px;
+  display: flex;
+  background-color: yellow;
+  width: 60%;
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: flex-end;
+}
+
+.emotionBar {
+  border: 1px solid white;
+  background-color: green;
+  width: 49%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emotionBarActive {
+  border: 1px solid white;
+  background-color: red;
+  width: 49%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emotionLabel {
+  font-family: Avenir;
+  font-weight: 600;
+  text-align: center;
+  margin: 0px;
+}
+
+/*WRAPPER GRAPH*/
+.wrapperGraphs {
+  width: 60%;
+  margin-top: 15px;
+  display: flex;
+  background-color: grey;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.graphItem {
+  flex: 1;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.graphLabel {
+  text-align: center;
 }
