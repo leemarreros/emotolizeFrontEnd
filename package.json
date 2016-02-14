@@ -24,6 +24,7 @@
   "dependencies": {
     "babelify": "^6.3.0",
     "browser-sync": "^2.9.11",
+    "d3": "^3.5.15",
     "react": "^0.14.7",
     "react-d3-components": "^0.6.2",
     "react-dom": "^0.14.0-",

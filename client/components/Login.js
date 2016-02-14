@@ -21,15 +21,15 @@ export default class Login extends React.Component{
   }
 
   componentDidMount() {
-    this.connect();
-    this.streaming();
+    // this.connect();
+    // this.streaming();
     // this.socket.emit('streamingNow', {id: 'sup'});
   }
 
   componentWillMount() {
-    // this.socket = io('ec2-54-200-226-3.us-west-2.compute.amazonaws.com/emo-socket');
-    // this.socket.on('connect', this.connect.bind(this));
-    // this.socket.on('stream', this.streaming);
+    this.socket = io('ec2-54-200-226-3.us-west-2.compute.amazonaws.com/emo-socket');
+    this.socket.on('connect', this.connect.bind(this));
+    this.socket.on('streaming', this.streaming.bind(this));
     // this.socket.on('endstream', this.endStream);
     // this.socket.on('error', this.error);
 
@@ -60,7 +60,7 @@ export default class Login extends React.Component{
 
   connect(data) {
     //title of event, data
-    console.log('connected', data);
+    // console.log('connected', data);
     this.setState({
       status: 'connected',
       title: 'Developer Week Emotion Recognition',
@@ -68,12 +68,35 @@ export default class Login extends React.Component{
   }
 
   streaming(data) {
-    console.log('streaming', data)
+    console.log('dataN', data);
+    if(!!data) {
+      var updateData = this.structureData(data);
+      if (updateData.values.length > 0) {
+        console.log('updateDataN', updateData);
+        this.setState({streamData: updateData});
+        return;
+      }
+    }
     this.setState({streamData: dataEmotion});
   }
 
   endStreamEvent(data) {
     this.setState({isEndTransmition: true});
+  }
+
+  structureData(dataObj) {
+    var updateData = {
+      label: 'Emotional Recognition',
+      values: []
+    }
+    var emotions = ['anger', 'contempt', 'disgust', 'fear', 'happiness', 'neutral', 'sadness', 'surprise'];
+    emotions.forEach((emotion, i) => {
+      updateData.values.push({
+        x: emotion,
+        y: dataObj[emotion]
+      })
+    })
+    return updateData;
   }
 
   retrieveUserInfo() {
@@ -126,8 +149,8 @@ export default class Login extends React.Component{
             title={this.state.title}
             date={this.state.date}
             endStreamEvent={this.endStreamEvent.bind(this)}/>
+    );
 
-      )
     if (this.state.response === null) {
       return <div>Loading</div>
     }

@@ -107,22 +107,51 @@
 }
 
 /*WRAPPER GRAPH*/
-.wrapperGraphs {
+.wrapperGraphsBars {
   width: 60%;
   margin-top: 15px;
   display: flex;
-  background-color: grey;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperLabel {
+  flex: 1;
+  text-align: center;
+  vertical-align: center;
+  align-self: center;
   align-items: center;
   justify-content: center;
 }
 
 .graphItem {
   flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
   background-color: white;
-  border: 1px solid black;
+  margin: 0.5px;
+  width: 40px;
+}
+
+.graphItemActivate {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  background-color: yellow;
+  margin: 0.5px;
+  width: 100%;
 }
 
 .graphLabel {
   text-align: center;
+  font-family: Avenir;
+  margin-top: 12px;
+}
+
+/*GRAPHS*/
+.wrapperGraphs {
+  margin-top: 20px
 }
