@@ -29,7 +29,7 @@ export default class Login extends React.Component{
   componentWillMount() {
     // this.socket = io('ec2-54-200-226-3.us-west-2.compute.amazonaws.com/emo-socket');
     // this.socket.on('connect', this.connect.bind(this));
-    // this.socket.on('streaming', this.streaming);
+    // this.socket.on('stream', this.streaming);
     // this.socket.on('endstream', this.endStream);
     // this.socket.on('error', this.error);
 
@@ -68,7 +68,7 @@ export default class Login extends React.Component{
   }
 
   streaming(data) {
-    console.log('streaming', dataEmotion)
+    console.log('streaming', data)
     this.setState({streamData: dataEmotion});
   }
 
@@ -117,6 +117,17 @@ export default class Login extends React.Component{
   }
 
   render() {
+    return (
+      <Display
+            userInfo={this.state.userInfo}
+            status={this.state.status}
+            isEndTransmition={this.state.isEndTransmition}
+            streamData={this.state.streamData}
+            title={this.state.title}
+            date={this.state.date}
+            endStreamEvent={this.endStreamEvent.bind(this)}/>
+
+      )
     if (this.state.response === null) {
       return <div>Loading</div>
     }

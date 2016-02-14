@@ -22,7 +22,7 @@ export default class Display extends React.Component{
       isEndTransmition: null,
       streamData: null,
       userInfo: null,
-      emotions: ['Anger', 'Disgust', 'Fear', 'Happiness', 'Neutral', 'Sadness', 'Surprise', 'All'],
+      emotions: ['Anger', 'Disgust', 'Fear', 'Happiness', 'Neutral', 'Sadness', 'Surprise', '+Relevant'],
       Contempt: false,
       Disgust: false,
       Fear: false,
@@ -36,6 +36,7 @@ export default class Display extends React.Component{
   componentWillReceiveProps(nextProps) {
     // nextProps.streamData
     this.statistics = nextProps.streamData;
+    this.statisticsRelevant = nextProps.streamData.values.sort((a, b)=> b.y - a.y);
 
     var data = {
       label: nextProps.streamData.label,
@@ -58,14 +59,23 @@ export default class Display extends React.Component{
   }
 
   onEndTransmision() {
-    console.log('onEndTransmision');
     this.props.endStreamEvent();
   }
 
   onEmotionClick(emotion) {
-    this.setState({[emotion]: !this.state[emotion]}, function() {
-      this.updateGraph();
-    });
+    if (emotion === '+Relevant') {
+      var newData = {};
+      this.statisticsRelevant.forEach((each, i)=> {
+        i <= 3 ? (newData[each.x] = true) : newData[each.x] = false;
+      })
+      this.setState(newData, function() {
+        this.updateGraph();
+      });
+    } else {
+      this.setState({[emotion]: !this.state[emotion]}, function() {
+        this.updateGraph();
+      });
+    }
   }
 
   updateGraph() {
@@ -110,9 +120,9 @@ export default class Display extends React.Component{
         {!!this.state.streamData &&
           <PieChart
             data={this.state.streamData}
-            width={600}
-            height={400}
-            margin={{top: 10, bottom: 10, left: 100, right: 100}}
+            width={800}
+            height={600}
+            margin={{top: 30, bottom: 10, left: 100, right: 100}}
             sort={sort}/>
         }
         </div>

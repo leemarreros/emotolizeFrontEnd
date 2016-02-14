@@ -36,7 +36,7 @@ var data_api = {
           {x: 'Happiness', y: 0.01392},
           {x: 'Neutral', y: 0.84881},
           {x: 'Sadness', y: 0.12072},
-          {x: 'Surpise', y: 0.00025},
+          {x: 'Surprise', y: 0.00025},
         ]
 };
 
